@@ -1,0 +1,137 @@
+ .u-section-1 {
+  background-image: url("https://assets.nicepagecdn.com/5547a658/4063769/images/Hot-Cool-Purple-Background.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 718px;
+}
+
+.u-section-1 .u-btn-1 {
+  background-image: none;
+  margin: 20px 20px 0 0;
+  padding: 0 15px 0 13px;
+}
+
+.u-section-1 .u-icon-1 {
+  font-size: 1.625em;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 2.25rem;
+  background-image: none;
+  font-weight: 700;
+  text-decoration: underline !important;
+  margin: 30px auto 0;
+}
+
+.u-section-1 .u-form-1 {
+  height: 253px;
+  margin: 20px 20px 60px 0;
+}
+
+.u-section-1 .u-label-1 {
+  font-family: "Abril Fatface";
+  font-size: 1.25rem;
+}
+
+.u-section-1 .u-input-1 {
+  background-image: linear-gradient(white, var(--custom-color-8));
+  font-style: italic;
+}
+
+.u-section-1 .u-form-group-2 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-2 {
+  font-family: "Abril Fatface";
+  font-size: 1.25rem;
+}
+
+.u-section-1 .u-input-2 {
+  background-image: linear-gradient(white, var(--custom-color-8));
+  font-style: italic;
+}
+
+.u-section-1 .u-label-3 {
+  font-family: "Abril Fatface";
+  font-size: 1.25rem;
+}
+
+.u-section-1 .u-input-3 {
+  background-image: linear-gradient(white, var(--custom-color-8));
+  font-style: italic;
+}
+
+.u-section-1 .u-form-group-4 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-4 {
+  font-family: "Abril Fatface";
+  font-size: 1.25rem;
+}
+
+.u-section-1 .u-input-4 {
+  background-image: linear-gradient(white, var(--custom-color-8));
+  font-style: italic;
+}
+
+.u-section-1 .u-form-group-5 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-5 {
+  font-family: "Abril Fatface";
+  font-size: 1.25rem;
+}
+
+.u-section-1 .u-input-5 {
+  background-image: linear-gradient(white, var(--custom-color-8));
+  font-style: italic;
+}
+
+.u-section-1 .u-btn-2 {
+  letter-spacing: 1px;
+  border-style: none;
+  text-transform: uppercase;
+  background-image: none;
+  font-weight: 700;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 632px;
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 570px;
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-form-group-5 {
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-form-1 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    font-size: 1.5rem;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 340px;
+  }
+}
