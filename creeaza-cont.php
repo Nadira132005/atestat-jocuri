@@ -41,23 +41,22 @@ if (isset($_POST["name"])) {
 </head>
 
 <body>
-  <section>
-    <nav>
-      <a class="logo" href="index.php">
-        <b>
-          GAME-STOP
-        </b>
+  <nav>
+    <a class="logo" href="index.php">
+      <b>
+        <span>GAME-</span><span style="color:rgb(123, 87, 255);"><i>STORE</i></span>
+      </b>
+    </a>
+    <div>
+      <a href="index.php">
+        <span>Acasa</span>
       </a>
-      <div>
-        <a href="index.php">
-          <span>Acasa</span>
-        </a>
-        <a href="login.php">
-          <span>Login</span>
-        </a>
-      </div>
-    </nav>
-
+      <a href="login.php">
+        <span>Login</span>
+      </a>
+    </div>
+  </nav>
+  <section>
     <div class="form-container">
       <span class="form-title">Crează-ți contul:</span>
       <form action="" method="post">
