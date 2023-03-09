@@ -1,0 +1,36 @@
+section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.promo {
+  width: 50%;
+}
+
+.description {
+  font-size: 1.25rem;
+  color: rgb(100, 100, 100);
+}
+
+.visit-game-gallery {
+  padding: 0.6rem 1rem;
+  background-color: rgb(123, 87, 255);
+  border-radius: 0.4rem;
+  color: white;
+}
+
+.visit-game-gallery:hover {
+  background-color: rgb(97, 59, 236);
+}
+
+img {
+  max-width: 30%;
+}

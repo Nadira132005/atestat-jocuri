@@ -77,10 +77,6 @@ if (isset($_POST["name"])) {
       </form>
     </div>
   </section>
-
-  <?php
-  include("./components/review/index.php");
-  ?>
 </body>
 
 <script>
