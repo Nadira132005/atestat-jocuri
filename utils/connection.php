@@ -1,9 +1,14 @@
 <?php
-$hostname = "info.tm.edu.ro:3366";
-$username = "nbodrogean";
-$password = "N@dir@%B0lT";
-$database = "nbodrogean";
+try {
+    $hostname = "info.tm.edu.ro:3366";
+    $username = "nbodrogean";
+    $password = "N@dir@%B0lT";
+    $database = "nbodrogean";
 
-// Connection to the database 
-$database = new PDO("mysql:host=$hostname;dbname=$database;charset=utf8mb4", $username, $password);
+    // Connection to the database 
+    $database = new PDO("mysql:host=$hostname;dbname=$database;charset=utf8mb4", $username, $password);
+} catch (PDOException $e) {
+    echo "<h1>Error : " . $e->getMessage() . "<h1/>";
+    die();
+}
 ?>
