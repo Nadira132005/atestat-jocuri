@@ -31,31 +31,20 @@ if (isset($_POST["name"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="./style/creeaza-cont.css">
+  <link rel="stylesheet" href="./style/global.css">
   <title>Creaza cont</title>
 </head>
 
 <body>
-  <nav>
-    <a class="logo" href="index.php">
-      <b>
-        <span>GAME-</span><span style="color:rgb(123, 87, 255);"><i>STORE</i></span>
-      </b>
-    </a>
-    <div>
-      <a href="index.php">
-        <span>Acasa</span>
-      </a>
-      <a href="login.php">
-        <span>Login</span>
-      </a>
-    </div>
-  </nav>
+  <?php
+  include("./components/navbar/index.php");
+  ?>
+
   <section>
     <div class="form-container">
       <span class="form-title">Crează-ți contul:</span>
@@ -87,25 +76,11 @@ if (isset($_POST["name"])) {
         </div>
       </form>
     </div>
-
   </section>
 
-  <footer>
-    <span class="review-question">
-      Vrei sa lasi un
-      <span class="review">
-        <i>
-          #review
-        </i>
-      </span>
-      ?
-    </span>
-    <br>
-    <a class="link-to-review-page" href="Review.php">
-      Click aici!
-    </a>
-  </footer>
-
+  <?php
+  include("./components/review/index.php");
+  ?>
 </body>
 
 <script>
