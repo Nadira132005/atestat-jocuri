@@ -35,7 +35,7 @@
           Distracția te așteaptă!
         </i>
       </p>
-      <a class="visit-game-gallery" href="Jocuri.php">Vezi Jocurile</a>
+      <a class="visit-game-gallery" href="jocuri.php">Vezi Jocurile</a>
     </div>
     <img src="./images/computer-game.png" alt="computer-start-game">
   </section>

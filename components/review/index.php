@@ -10,7 +10,7 @@
         ?
     </span>
     <br>
-    <a class="link-to-review-page" href="Review.php">
+    <a class="link-to-review-page" href="review.php">
         Click aici!
     </a>
 </footer>

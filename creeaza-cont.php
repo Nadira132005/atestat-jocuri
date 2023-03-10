@@ -42,7 +42,7 @@
         if (isset($result["id"])) {
           $user_id = $result["id"];
           store_user_cookie($user_id);
-
+          header("Location: index.php");
         }
       } catch (PDOException $error) {
         if ($error->getCode() == 23000) {
