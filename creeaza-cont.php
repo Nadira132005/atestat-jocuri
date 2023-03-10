@@ -1,35 +1,3 @@
-<?php
-include('./utils/connection.php');
-include("./utils/cookies.php");
-
-if (isset($_POST["name"])) {
-  $name = $_POST["name"];
-  $forename = $_POST["forename"];
-  $email = $_POST["email"];
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-
-  $template_insert = $database->prepare("INSERT INTO atestat_user (email, nume, prenume, username, password) VALUES (:email, :name, :forename, :username, :password)");
-  $template_insert->bindValue(":email", $email);
-  $template_insert->bindValue(":name", $name);
-  $template_insert->bindValue(":forename", $forename);
-  $template_insert->bindValue(":username", $username);
-  $template_insert->bindValue(":password", $password);
-  $template_insert->execute();
-
-  $template_select = $database->prepare("SELECT id FROM atestat_user WHERE email = :email");
-  $template_select->bindValue(":email", $email);
-  $template_select->execute();
-  $result = $template_select->fetch();
-
-  if (isset($result["id"])) {
-    $user_id = $result["id"];
-    store_user_cookie($user_id);
-
-  }
-}
-?>
-
 <!DOCTYPE html>
 
 <head>
@@ -46,6 +14,46 @@ if (isset($_POST["name"])) {
   ?>
 
   <section>
+    <?php
+    include('./utils/connection.php');
+    include("./utils/cookies.php");
+
+    if (isset($_POST["name"])) {
+      $name = $_POST["name"];
+      $forename = $_POST["forename"];
+      $email = $_POST["email"];
+      $username = $_POST["username"];
+      $password = $_POST["password"];
+
+      $template_insert = $database->prepare("INSERT INTO atestat_user (email, nume, prenume, username, password) VALUES (:email, :name, :forename, :username, :password)");
+      $template_insert->bindValue(":email", $email);
+      $template_insert->bindValue(":name", $name);
+      $template_insert->bindValue(":forename", $forename);
+      $template_insert->bindValue(":username", $username);
+      $template_insert->bindValue(":password", $password);
+
+      try {
+        $template_insert->execute();
+        $template_select = $database->prepare("SELECT id FROM atestat_user WHERE email = :email");
+        $template_select->bindValue(":email", $email);
+        $template_select->execute();
+        $result = $template_select->fetch();
+
+        if (isset($result["id"])) {
+          $user_id = $result["id"];
+          store_user_cookie($user_id);
+
+        }
+      } catch (PDOException $error) {
+        if ($error->getCode() == 23000) {
+          // unique key constraint violation, i.e. duplicate name
+          echo "<span class='error-message'>Email: '$email' or username: '$username' is already being used!</span>";
+        } else {
+          throw $error;
+        }
+      }
+    }
+    ?>
     <div class="form-container">
       <span class="form-title">Crează-ți contul:</span>
       <form action="" method="post">

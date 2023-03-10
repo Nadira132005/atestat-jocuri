@@ -9,6 +9,9 @@
         <a href="index.php">
             <span>Acasa</span>
         </a>
+        <a href="jocuri.php">
+            <span>Jocuri</span>
+        </a>
         <?php
         include("./utils/connection.php");
 

@@ -26,6 +26,9 @@ nav {
 }
 
 .review-from-user {
+  max-width: max-content;
+  text-overflow: ellipsis;
+  overflow: hidden;
   padding: 0.5rem;
   margin: 0.5rem;
   font-style: italic;
