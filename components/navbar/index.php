@@ -12,6 +12,9 @@
         <a href="jocuri.php">
             <span>Jocuri</span>
         </a>
+        <a href="review.php">
+            <span>Review</span>
+        </a>
         <?php
         include("./utils/connection.php");
 

@@ -37,7 +37,7 @@
       </p>
       <a class="visit-game-gallery" href="jocuri.php">Vezi Jocurile</a>
     </div>
-    <img src="./images/computer-game.png" alt="computer-start-game">
+    <img class="start-game-home-image" src="./images/computer-game.png" alt="computer-start-game">
   </section>
 
 </body>
