@@ -1,0 +1,68 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  box-sizing: border-box;
+  max-width: 500px;
+  padding: 1rem;
+}
+
+.game-image {
+  border-radius: 1rem;
+  width: 100%;
+}
+
+.stars-container {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  margin-top: auto;
+}
+
+.star-rating {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.gold {
+  color: gold;
+}
+
+.review-card {
+  background-color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.4rem;
+  color: rgb(39, 39, 39);
+  border: 1px solid black;
+}
+
+.reviewer {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.reviewer_email {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: lighter;
+}
+
+.review-from-user {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  font-style: italic;
+  color: rgb(90, 90, 90);
+}
+
+.stars {
+  margin-top: 0.5rem;
+}
