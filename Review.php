@@ -8,19 +8,20 @@ if (!isset($_COOKIE["user_id"])) {
 
 if (isset($_POST["submit"])) {
   $review = $_POST["review"];
-  $game = $_POST["game"];
+  $game_id = $_POST["game_id"];
   $stars = $_POST["stars"];
   $user_id = $_COOKIE["user_id"];
 
-  $template_query = $database->prepare("INSERT INTO atestat_review (user_id, nume_joc, stele, comentariu) VALUES (:user_id, :game, :stars, :review)");
+  $template_query = $database->prepare("INSERT INTO atestat_review (user_id, joc_id, stele, comentariu) VALUES (:user_id, :game_id, :stars, :review)");
   $template_query->bindValue(":user_id", $user_id);
-  $template_query->bindValue(":game", $game);
+  $template_query->bindValue(":game_id", $game_id);
   $template_query->bindValue(":stars", $stars);
   $template_query->bindValue(":review", $review);
   $template_query->execute();
 
   header("Location: jocuri.php");
 }
+
 ?>
 
 
@@ -45,8 +46,19 @@ if (isset($_POST["submit"])) {
       <form action="" method="post" name="form">
         <div class="form-2-column-group">
           <div style="margin-right:1.5rem;">
-            <label>Numele jocului:</label>
-            <input required name="game">
+            <?php
+            $games_to_review = $database->query("SELECT * FROM atestat_joc")->fetchAll();
+            ?>
+            <label>Alege jocul: </label>
+            <select required name="game_id">
+              <?php
+              foreach ($games_to_review as $game) {
+                ?>
+                <option value=<?= $game["id"] ?>>
+                  <?= $game["nume"] ?>
+                </option>
+              <?php } ?>
+            </select>
           </div>
 
           <div>

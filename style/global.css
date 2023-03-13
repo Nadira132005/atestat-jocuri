@@ -53,6 +53,28 @@ input {
   border: 1px solid black;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+select {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  min-width: max-content;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+textarea {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  min-width: max-content;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
   margin-top: 0.25rem;
 }
 
