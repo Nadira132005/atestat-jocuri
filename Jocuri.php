@@ -19,7 +19,7 @@
   <section>
     <?php
     include("./utils/connection.php");
-    $games_query = $database->query("SELECT atestat_joc.id, imagine, descriere, nume, SUM(stele) AS rating FROM atestat_joc LEFT JOIN atestat_review ON atestat_joc.id = atestat_review.joc_id GROUP BY joc_id");
+    $games_query = $database->query("SELECT atestat_joc.id, imagine, descriere, nume, CAST(SUM(stele) / COUNT(atestat_review.id) AS int) AS rating FROM atestat_joc LEFT JOIN atestat_review ON atestat_joc.id = atestat_review.joc_id GROUP BY joc_id");
     $games = $games_query->fetchAll();
     ?>
     <?php foreach ($games as $game) { ?>
