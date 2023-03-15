@@ -1357,7 +1357,6 @@ $emoji = [
     'secret' => '㊙️',
 ];
 
-$emoji[array_rand($emoji)];
 
 function getRandomEmoji($emoji)
 {

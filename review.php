@@ -9,8 +9,13 @@ if (!isset($_COOKIE["user_id"])) {
 if (isset($_POST["submit"])) {
   $review = $_POST["review"];
   $game_id = $_POST["game_id"];
-  $stars = $_POST["stars"];
   $user_id = $_COOKIE["user_id"];
+
+  $stars = $_POST["stars"];
+  if ($stars > 10)
+    $stars = 10;
+  if ($stars < 0)
+    $stars = 0;
 
   $template_query = $database->prepare("INSERT INTO atestat_review (user_id, joc_id, stele, comentariu) VALUES (:user_id, :game_id, :stars, :review)");
   $template_query->bindValue(":user_id", $user_id);
