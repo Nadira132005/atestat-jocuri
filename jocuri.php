@@ -20,18 +20,18 @@
         <?php
         include("./utils/connection.php");
 
-
         $games = $database->query("--sql
-      SELECT 
-        atestat_joc.id, imagine, descriere, nume, 
-        CAST(SUM(stele) / COUNT(atestat_review.id) AS int) AS rating 
-      FROM atestat_joc 
-      LEFT JOIN atestat_review 
-      ON atestat_joc.id = atestat_review.joc_id 
-      GROUP BY joc_id 
-      ORDER BY rating DESC
-    ")->fetchAll();
+          SELECT 
+            atestat_joc.id, imagine, descriere, nume, 
+            CAST(SUM(stele) / COUNT(atestat_review.id) AS int) AS rating 
+          FROM atestat_joc 
+          LEFT JOIN atestat_review 
+          ON atestat_joc.id = atestat_review.joc_id 
+          GROUP BY joc_id 
+          ORDER BY rating DESC
+        ")->fetchAll();
         ?>
+
         <?php foreach ($games as $game) { ?>
             <div class="game-card">
                 <div class="game-image-container">

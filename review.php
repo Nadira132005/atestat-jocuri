@@ -17,7 +17,11 @@ if (isset($_POST["submit"])) {
   if ($stars < 0)
     $stars = 0;
 
-  $template_query = $database->prepare("INSERT INTO atestat_review (user_id, joc_id, stele, comentariu) VALUES (:user_id, :game_id, :stars, :review)");
+  $template_query = $database->prepare("--sql
+    INSERT INTO 
+      atestat_review (user_id, joc_id, stele, comentariu) 
+      VALUES (:user_id, :game_id, :stars, :review)
+  ");
   $template_query->bindValue(":user_id", $user_id);
   $template_query->bindValue(":game_id", $game_id);
   $template_query->bindValue(":stars", $stars);
@@ -52,11 +56,12 @@ if (isset($_POST["submit"])) {
         <div class="form-2-column-group">
           <div style="margin-right:1.5rem;">
             <?php
-            $games_to_review = $database->query("SELECT * FROM atestat_joc")->fetchAll();
+            $games_to_review = $database->query("SELECT id, nume FROM atestat_joc")->fetchAll();
             ?>
             <label>Alege jocul: </label>
             <select required name="game_id">
               <?php
+              // show the user a list of all games that are available for review
               foreach ($games_to_review as $game) {
                 ?>
                 <option value=<?= $game["id"] ?>>

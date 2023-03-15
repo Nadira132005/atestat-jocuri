@@ -24,16 +24,20 @@
       $username = $_POST["username"];
       $password = $_POST["password"];
 
-
-      $template_select = $database->prepare("SELECT id FROM atestat_user WHERE username = :username AND password = :password");
-      $template_select->execute(array(':username' => $username, ':password' => $password));
-      $result = $template_select->fetch();
+      $template_query = $database->prepare("SELECT id FROM atestat_user WHERE username = :username AND password = :password");
+      $template_query->bindValue(":username", $username);
+      $template_query->bindValue(":password", $password);
+      $template_query->execute();
+      $result = $template_query->fetch();
 
       if (isset($result["id"])) {
         $id = $result["id"];
-        store_user_cookie($id);
+        store_user_in_cookie($id);
+
+        // redirect to home page
         header("Location: index.php");
       } else
+        // show an error banner
         echo "<span class='error-message'>Username or password not correct!</span>";
     }
     ?>
@@ -55,6 +59,7 @@
 
 </body>
 <script>
+  // prevent form resubmission on page refresh
   if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
   }

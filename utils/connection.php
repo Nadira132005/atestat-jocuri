@@ -8,7 +8,7 @@ try {
     // Connection to the database 
     $database = new PDO("mysql:host=$hostname;dbname=$database;charset=utf8mb4", $username, $password);
 
-    // Improve error handling (e.g. alert user about duplicate keys);
+    // enable the database to throw  errors (e.g. throw a "23000" error when duplicate data is inserted in unique fields);
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo "<h1>Error : " . $e->getMessage() . "<h1/>";

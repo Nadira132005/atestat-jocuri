@@ -20,13 +20,13 @@
 
         if (isset($_COOKIE["user_id"])) {
             $user_id = $_COOKIE["user_id"];
-            $result = $database->query("SELECT username FROM atestat_user WHERE id = $user_id")->fetch();
-            $username = $result["username"];
+            $user = $database->query("SELECT username FROM atestat_user WHERE id = $user_id")->fetch();
             ?>
             <a class="username" href="#">
-                <?= $username ?>
                 <?php
                 include("./utils/emoji.php");
+
+                echo $user["username"];
                 echo getRandomEmoji($emoji);
                 ?>
             </a>
