@@ -14,3 +14,48 @@ nav {
 .username:hover {
   cursor: pointer;
 }
+
+.open-menu-button {
+  display: none !important;
+}
+
+.navbar-links {
+  min-width: fit-content;
+}
+
+.mobile-navigation-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 640px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-links.open {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .open-menu-button {
+    display: block !important;
+    font-size: 1.75rem;
+    margin-right: 1rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .open-menu-button:hover {
+    cursor: pointer;
+  }
+
+  nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
