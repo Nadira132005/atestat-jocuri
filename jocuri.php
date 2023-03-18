@@ -38,7 +38,7 @@
                     <img class="game-image" src=<?= "./images/" . $game["imagine"] ?> alt="">
                 </div>
                 <div class="game-info">
-                    <a href=<?= 'joc.php?' . "joc-id=" . $game["id"] ?>>
+                    <a href=<?= 'pages/joc/index.php?' . "joc-id=" . $game["id"] ?>>
                         <?= $game["nume"] ?>
                     </a>
                     <p class=" game-description">

@@ -68,9 +68,9 @@ select {
 }
 
 textarea {
+  box-sizing: border-box;
   margin-top: 0.5rem;
   font-size: 1rem;
-  min-width: max-content;
   padding: 0.5rem 0.75rem;
   border: 1px solid black;
   border-radius: 0.25rem;
