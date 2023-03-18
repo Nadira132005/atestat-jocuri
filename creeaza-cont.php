@@ -15,7 +15,7 @@
 
   <section>
     <?php
-    include('./utils/connection.php');
+    include('./utils/database.php');
     include("./utils/cookies.php");
 
     if (isset($_POST["name"])) {

@@ -18,9 +18,9 @@
 
     <section>
         <?php
-        include("./utils/connection.php");
+        include("./utils/database.php");
 
-        $games = $database->query("--sql
+        $games = $database->query("
           SELECT 
             atestat_joc.id, imagine, descriere, nume, 
             CAST(SUM(stele) / COUNT(atestat_review.id) AS int) AS rating 

@@ -16,7 +16,7 @@
             <span>Review</span>
         </a>
         <?php
-        include("./utils/connection.php");
+        include(__DIR__ . "/../../utils/database.php");
 
         if (isset($_COOKIE["user_id"])) {
             $user_id = $_COOKIE["user_id"];

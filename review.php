@@ -1,5 +1,5 @@
 <?php
-include("./utils/connection.php");
+include("./utils/database.php");
 
 if (!isset($_COOKIE["user_id"])) {
   header("Location: login.php");
@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
   if ($stars < 0)
     $stars = 0;
 
-  $template_query = $database->prepare("--sql
+  $template_query = $database->prepare("
     INSERT INTO 
       atestat_review (user_id, joc_id, stele, comentariu) 
       VALUES (:user_id, :game_id, :stars, :review)
