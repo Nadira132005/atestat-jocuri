@@ -151,3 +151,42 @@ section {
 .cancel {
   margin-right: 1rem;
 }
+
+.message {
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 95%;
+  max-width: 500px;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#close-message {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  margin-left: 1rem;
+}
+
+#close-message:hover {
+  background-color: transparent;
+}
+
+.success-message {
+  color: white;
+  background-color: rgb(60, 168, 60);
+}
+
+.error-message {
+  color: white;
+  background-color: rgb(233, 85, 85);
+}

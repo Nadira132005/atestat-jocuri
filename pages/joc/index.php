@@ -1,3 +1,28 @@
+<?php
+@include(__DIR__ . "/../../utils/database.php");
+
+$error = null;
+$success = null;
+
+if (isset($_POST["review-id"])) {
+    $review_id = $_POST["review-id"];
+    try {
+        $delete_review_query = $database->prepare("DELETE FROM atestat_review WHERE id = :review_id");
+        $delete_review_query->bindValue(":review_id", $review_id);
+        $delete_review_query->execute();
+
+        $affected_rows = $delete_review_query->rowCount();
+        if ($affected_rows > 0)
+            $success = "Review-ul a fost șters cu success!";
+        else
+            $error = "UPS! Review-ul nu a putut fi șters!";
+    } catch (PDOException $error) {
+        $error = "UPS! Review-ul nu a putut fi șters!";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +37,23 @@
 </head>
 
 <body>
+    <?php
+    if (isset($error))
+        echo "
+        <span class='message error-message'>
+            $error
+            <button id='close-message' class='fa fa-close'></button>
+        </span>";
+
+    if (isset($success))
+        echo "
+        <span class='message success-message'>
+            $success
+            <button id='close-message' class='fa fa-close'></button>
+        </span>
+        ";
+    ?>
+
     <?php
     include(__DIR__ . "/../../components/navbar/index.php");
     ?>
@@ -28,7 +70,7 @@
             <div class="dialog-actions">
                 <button type="button" class="cancel" id="cancel">ANULEAZĂ</button>
                 <form action="" method="post">
-                    <button type="submit" class="delete" id="delete-review">
+                    <button type="submit" class="delete" id="delete-review" name="review-id">
                         ȘTERGE
                     </button>
                 </form>
@@ -127,5 +169,11 @@
 </body>
 
 <script src="./joc.js"></script>
+<script>
+    // prevent form resubmission on page refresh
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
 
 </html>
