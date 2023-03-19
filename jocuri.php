@@ -27,9 +27,10 @@
           FROM atestat_joc 
           LEFT JOIN atestat_review 
           ON atestat_joc.id = atestat_review.joc_id 
-          GROUP BY joc_id 
+          GROUP BY atestat_joc.id 
           ORDER BY rating DESC
         ")->fetchAll();
+
         ?>
 
         <?php foreach ($games as $game) { ?>
@@ -64,13 +65,7 @@
 
     <footer>
         <span class="review-question">
-            Vrei sa lasi un
-            <span class="review">
-                <i>
-                    #review
-                </i>
-            </span>
-            ?
+            Vrei sa lasi un review ?
         </span>
         <br>
         <a class="link-to-review-page" href="review.php">
