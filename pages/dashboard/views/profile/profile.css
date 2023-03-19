@@ -1,0 +1,111 @@
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info-container {
+  box-sizing: border-box;
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+}
+
+.profile-picture {
+  font-family: monospace;
+  width: 6rem;
+  height: 6rem;
+  background-color: rgb(212, 212, 212);
+  border-radius: 100%;
+  border: 2px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+.fa-sign-out {
+  margin-left: 0.5rem;
+}
+.log-out {
+  background-color: rgb(221, 55, 55);
+  margin-top: 2rem;
+}
+
+.log-out:hover {
+  background-color: rgb(196, 38, 38);
+}
+
+.fa-edit {
+  margin-left: 1rem;
+}
+
+.user-info {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.info-tag {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edit-user-field {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.edit-info {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.message-container {
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 95%;
+  max-width: 500px;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message {
+  word-wrap: break-word;
+}
+
+#close-message {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+#close-message:hover {
+  background-color: transparent;
+}
+
+.success-message {
+  color: white;
+  background-color: rgb(60, 168, 60);
+}
+
+.error-message {
+  color: white;
+  background-color: rgb(233, 85, 85);
+}

@@ -25,13 +25,13 @@
 
         if (isset($_COOKIE["user_id"])) {
             $user_id = $_COOKIE["user_id"];
-            $user = $database->query("SELECT username FROM atestat_user WHERE id = $user_id")->fetch();
+            $user_navbar = $database->query("SELECT username FROM atestat_user WHERE id = $user_id")->fetch();
             ?>
-            <a class="username" href="/atestat/profil.php">
+            <a class="username" href="/atestat/pages/dashboard/index.php">
                 <?php
                 include(__DIR__ . "/../../utils/emoji.php");
 
-                echo $user["username"];
+                echo $user_navbar["username"];
                 echo getRandomEmoji($emoji);
                 ?>
             </a>

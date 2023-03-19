@@ -8,10 +8,6 @@
   border: 1px solid black;
 }
 
-nav {
-  position: relative;
-}
-
 .reviewer {
   font-weight: bold;
   font-style: italic;

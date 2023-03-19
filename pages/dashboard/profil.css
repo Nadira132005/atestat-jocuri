@@ -1,0 +1,29 @@
+#active {
+  position: relative;
+}
+
+#active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid rgb(123, 87, 255);
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.select-page {
+  margin-right: 1rem;
+}
+
+section {
+  width: 100%;
+  height: min-content;
+}
