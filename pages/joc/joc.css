@@ -75,6 +75,7 @@ section {
   margin-top: 0.5rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -86,7 +87,6 @@ section {
 .delete {
   background-color: rgb(221, 55, 55);
   color: white;
-  font-size: 1rem;
 }
 
 .delete:hover {
@@ -98,6 +98,7 @@ section {
   background-color: rgb(125, 89, 255);
   color: white;
   margin-right: 1rem;
+  padding: 0.55rem 0.75rem;
 }
 
 .edit:hover {
