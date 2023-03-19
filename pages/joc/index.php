@@ -129,6 +129,10 @@ if (isset($_POST["review-id"])) {
         <h2>Review-uri: </h2>
 
         <?php
+        // only display the list of reviews if it's not empty 
+        if (isset($game_reviews[0]["id"])) {
+            ?>
+        <?php
         foreach ($game_reviews as $review) {
             ?>
             <div class="review-card">
@@ -164,6 +168,7 @@ if (isset($_POST["review-id"])) {
                     <?php } ?>
                 </div>
             </div>
+            <?php } ?>
         <?php } ?>
     </section>
 </body>
