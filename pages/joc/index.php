@@ -132,42 +132,42 @@ if (isset($_POST["review-id"])) {
         // only display the list of reviews if it's not empty 
         if (isset($game_reviews[0]["id"])) {
             ?>
-        <?php
-        foreach ($game_reviews as $review) {
-            ?>
-            <div class="review-card">
-                <span class="reviewer">
-                    <?= $review["username"] ?>
-                </span>
-                <div class="reviewer_email">
-                    <?= $review["email"] ?>
-                </div>
-                <div class="review-from-user">
-                    <?= $review["comentariu"] ?>
-                </div>
+            <?php
+            foreach ($game_reviews as $review) {
+                ?>
+                <div class="review-card">
+                    <span class="reviewer">
+                        <?= $review["username"] ?>
+                    </span>
+                    <div class="reviewer_email">
+                        <?= $review["email"] ?>
+                    </div>
+                    <div class="review-from-user">
+                        <?= $review["comentariu"] ?>
+                    </div>
 
-                <div class="review-stats">
-                    <span style="margin-right:1rem;">
-                        ⭐
-                        <?= $review["stele"] ?>
-                    </span>
-                    <span>
-                        🕒
+                    <div class="review-stats">
+                        <span style="margin-right:1rem;">
+                            ⭐
+                            <?= $review["stele"] ?>
+                        </span>
+                        <span>
+                            🕒
+                            <?php
+                            $date = date("d M Y", strtotime($review["updated_at"]));
+                            echo $date;
+                            ?>
+                        </span>
+                    </div>
+                    <div class="review-actions">
                         <?php
-                        $date = date("d M Y", strtotime($review["updated_at"]));
-                        echo $date;
-                        ?>
-                    </span>
+                        if (isset($_COOKIE["user_id"]) && $_COOKIE["user_id"] == $review["user_id"]) {
+                            ?>
+                            <a class="edit" href=<?= "/atestat/pages/editeaza/index.php" . "?" . "review-id=" . $review["review_id"] ?>>EDITEAZĂ</a>
+                            <button class="delete" id="open-dialog" value=<?= $review["review_id"] ?>>ȘTERGE</button>
+                        <?php } ?>
+                    </div>
                 </div>
-                <div class="review-actions">
-                    <?php
-                    if (isset($_COOKIE["user_id"]) && $_COOKIE["user_id"] == $review["user_id"]) {
-                        ?>
-                        <button class="edit">EDITEAZĂ</button>
-                        <button class="delete" id="open-dialog" value=<?= $review["review_id"] ?>>ȘTERGE</button>
-                    <?php } ?>
-                </div>
-            </div>
             <?php } ?>
         <?php } ?>
     </section>
