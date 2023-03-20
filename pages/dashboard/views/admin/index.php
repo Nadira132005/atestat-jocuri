@@ -33,7 +33,7 @@
                     <?= $game["descriere"] ?>
                 </span>
                 <span>
-                    <a class="edit" href=<?= "/atestat/pages/editeaza/index.php" ?>>EDITEAZĂ</a>
+                    <a class="edit" href=<?= "/atestat/pages/dashboard/views/admin/edit-game.php?joc-id=" . $game["id"] ?>>EDITEAZĂ</a>
                     <button class="delete" id="open-dialog">ȘTERGE</button>
                 </span>
             <?php } ?>
@@ -85,7 +85,7 @@
                             ACȚIUNI:
                         </span>
                         <span>
-                            <a class="edit" href=<?= "/atestat/pages/editeaza/index.php" ?>>EDITEAZĂ</a>
+                            <a class="edit" href=<?= "/atestat/pages/dashboard/views/admin/edit-game.php?joc-id=" . $game["id"] ?>>EDITEAZĂ</a>
                             <button class="delete" id="open-dialog">ȘTERGE</button>
                         </span>
                     </div>

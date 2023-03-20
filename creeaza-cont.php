@@ -43,14 +43,15 @@
           $user_id = $result["id"];
           store_user_in_cookie($user_id);
           header("Location: index.php");
+          return;
         }
+
       } catch (PDOException $error) {
         if ($error->getCode() == 23000) {
           // unique key constraint violation, i.e. duplicate name
           echo "<span class='error-message'>Email: '$email' or username: '$username' is already being used!</span>";
-        } else {
-          throw $error;
-        }
+        } else
+          echo "<span class='error-message'>Eroare necunoscută! Te rugăm încearcă mai târziu</span>";
       }
     }
     ?>
