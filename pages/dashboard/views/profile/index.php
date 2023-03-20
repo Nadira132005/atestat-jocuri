@@ -95,14 +95,20 @@ if (!$is_edit_mode) {
             </div>
 
             <div class="user-info">
-                <span class="info-tag">Prenume:
+                <span class="info-tag">
+                    <b>
+                        Prenume:
+                    </b>
                     <?= $user["prenume"] ?>
                 </span>
                 <a href="?action=edit" class="edit-user-field fa fa-edit"></a>
             </div>
 
             <div class="user-info">
-                <span class="info-tag">Email:
+                <span class="info-tag">
+                    <b>
+                        Email:
+                    </b>
                     <?= $user["email"] ?>
                 </span>
                 <a href="?action=edit" class="edit-user-field fa fa-edit"></a>

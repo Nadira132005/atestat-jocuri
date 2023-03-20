@@ -118,7 +118,7 @@ if (isset($success))
                     if (isset($_COOKIE["user_id"]) && $_COOKIE["user_id"] == $review["user_id"]) {
                         ?>
                         <a class="edit" href=<?= "/atestat/pages/editeaza/index.php" . "?" . "review-id=" . $review["review_id"] ?>>EDITEAZĂ</a>
-                        <button class="delete" id="open-dialog" value=<?= $review["review_id"] ?>>ȘTERGE</button>
+                        <button class="delete open-dialog" value=<?= $review["review_id"] ?>>ȘTERGE</button>
                     <?php } ?>
                 </div>
             </div>
