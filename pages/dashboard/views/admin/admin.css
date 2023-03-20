@@ -91,6 +91,93 @@ section {
   background: rgb(97, 59, 236);
 }
 
+.modal-delete-games {
+  display: none;
+}
+
+.modal-delete-games.open {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.623);
+}
+
+.dialog {
+  margin: 2rem;
+  box-sizing: border-box;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.big-warning {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(202, 38, 38);
+}
+
+.warning-explanation {
+  margin-top: 0.25rem;
+  color: rgb(104, 104, 104);
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+}
+
+.cancel {
+  margin-right: 1rem;
+}
+
+.message {
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 95%;
+  max-width: 500px;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#close-message {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  margin-left: 1rem;
+}
+
+#close-message:hover {
+  background-color: transparent;
+}
+
+.success-message {
+  color: white;
+  background-color: rgb(60, 168, 60);
+}
+
+.error-message {
+  color: white;
+  background-color: rgb(233, 85, 85);
+}
+
 @media screen and (min-width: 1364px) {
   .desktop-view {
     display: block;

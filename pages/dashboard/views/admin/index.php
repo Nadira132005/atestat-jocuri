@@ -1,12 +1,81 @@
+<?php
+@include($_SERVER['DOCUMENT_ROOT'] . "/atestat/utils/database.php");
+
+$error = null;
+$success = null;
+
+if (isset($_POST["game-id"])) {
+    $game_id = $_POST["game-id"];
+    try {
+        $delete_game_query = $database->prepare("DELETE FROM atestat_joc WHERE id = :game_id");
+        $delete_game_query->bindValue(":game_id", $game_id);
+        $delete_game_query->execute();
+
+        $affected_rows = $delete_game_query->rowCount();
+        if ($affected_rows > 0)
+            $success = "Jocul a fost șters cu success!";
+        else
+            $error = "UPS! Jocul nu a putut fi șters!";
+    } catch (PDOException $error) {
+        $error = "UPS! Jocul nu a putut fi șters!";
+    }
+}
+
+?>
+
+
 <link rel="stylesheet" href="/atestat/pages/dashboard/views/admin/admin.css">
 
 <section>
+
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . '/atestat/utils/database.php');
+    if (isset($error))
+        echo "
+        <span class='message error-message'>
+            $error
+            <button id='close-message' class='fa fa-close'></button>
+        </span>";
+
+    if (isset($success))
+        echo "
+        <span class='message success-message'>
+            $success
+            <button id='close-message' class='fa fa-close'></button>
+        </span>
+        ";
+    ?>
+
+
+    <div class="modal-delete-games">
+        <div class="dialog">
+            <span class="big-warning">
+                Ești sigur că vrei să ștergi jocul?
+            </span>
+            <span class="warning-explanation">
+                Această acțiune este permanentă și nu mai poate fi anulată!
+            </span>
+
+            <div class="dialog-actions">
+                <button type="button" class="cancel" id="cancel">ANULEAZĂ</button>
+                <form action="" method="post">
+                    <button type="submit" class="delete" id="delete-game" name="game-id">
+                        ȘTERGE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <?php
+
     $games = $database->query("
         SELECT * FROM atestat_joc; 
     ")->fetchAll();
     ?>
+
+
 
     <div class="desktop-view">
         <a class="add-game-button" href="/atestat/pages/dashboard/views/admin/add-game.php">ADAUGĂ JOC</a>
@@ -34,7 +103,7 @@
                 </span>
                 <span>
                     <a class="edit" href=<?= "/atestat/pages/dashboard/views/admin/edit-game.php?joc-id=" . $game["id"] ?>>EDITEAZĂ</a>
-                    <button class="delete" id="open-dialog">ȘTERGE</button>
+                    <button class="delete open-dialog" value="<?= $game["id"] ?>">ȘTERGE</button>
                 </span>
             <?php } ?>
         </div>
@@ -86,11 +155,18 @@
                         </span>
                         <span>
                             <a class="edit" href=<?= "/atestat/pages/dashboard/views/admin/edit-game.php?joc-id=" . $game["id"] ?>>EDITEAZĂ</a>
-                            <button class="delete" id="open-dialog">ȘTERGE</button>
+                            <button class="delete open-dialog" value="<?= $game["id"] ?>">ȘTERGE</button>
                         </span>
                     </div>
                 </div>
             <?php } ?>
         </div>
     </div>
+    <script src="/atestat/pages/dashboard/views/admin/admin.js"></script>
+    <script>
+        // prevent form resubmission on page refresh
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </section>
