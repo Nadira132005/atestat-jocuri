@@ -1,5 +1,5 @@
 <?php
-@include($_SERVER['DOCUMENT_ROOT'] . "/atestat/utils/database.php");
+@include(__DIR__ . "/../../../../utils/database.php");
 
 $error = null;
 $success = null;

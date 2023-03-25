@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/atestat/utils/database.php");
+include(__DIR__ . "/../../../../utils/database.php");
 
 if (!isset($_COOKIE["user_id"])) {
     header("Location: /atestat/login.php");
@@ -26,7 +26,6 @@ $game = $game_query->fetch();
 ?>
 
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . "/atestat/utils/database.php");
 
 if (isset($_POST["submit"])) {
     $game_name = $_POST["name"];
@@ -34,7 +33,7 @@ if (isset($_POST["submit"])) {
 
     $filename = $game["imagine"];
 
-    // if the user updated the image as well, upload the latest version and refresh the $filename in the folder as well 
+    // if the user updated the image as well, upload the latest version to the database too
     if ($_FILES["game-thumbnail"]["error"] != UPLOAD_ERR_NO_FILE) {
         $mime_type = $_FILES["game-thumbnail"]["type"];
         $extension = ".jpg";
@@ -51,7 +50,7 @@ if (isset($_POST["submit"])) {
         $filename = "$prefix" . "$extension";
         $temporary_file = $_FILES['game-thumbnail']['tmp_name'];
 
-        $upload_folder = $_SERVER['DOCUMENT_ROOT'] . '/atestat/images/';
+        $upload_folder = __DIR__ . "/../../../../images/";
         $upload_file = $upload_folder . $filename;
         if (!move_uploaded_file($temporary_file, $upload_file)) {
             echo "Possible file upload attack!\n";
@@ -105,7 +104,7 @@ if (isset($_POST["submit"])) {
 
 <body>
     <?php
-    include($_SERVER['DOCUMENT_ROOT'] . "/atestat/components/navbar/index.php");
+    include(__DIR__ . "/../../../../components/navbar/index.php");
     ?>
     <section>
         <div class="form-container">
