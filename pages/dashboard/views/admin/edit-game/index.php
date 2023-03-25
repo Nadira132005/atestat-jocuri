@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . "/../../../../utils/database.php");
+include(__DIR__ . "/../../../../../utils/database.php");
 
 if (!isset($_COOKIE["user_id"])) {
     header("Location: /atestat/login.php");
@@ -50,7 +50,7 @@ if (isset($_POST["submit"])) {
         $filename = "$prefix" . "$extension";
         $temporary_file = $_FILES['game-thumbnail']['tmp_name'];
 
-        $upload_folder = __DIR__ . "/../../../../images/";
+        $upload_folder = __DIR__ . "/../../../../../images/";
         $upload_file = $upload_folder . $filename;
         if (!move_uploaded_file($temporary_file, $upload_file)) {
             echo "Possible file upload attack!\n";
@@ -97,14 +97,14 @@ if (isset($_POST["submit"])) {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./add-game.css">
+    <link rel="stylesheet" href="./edit-game.css">
     <link rel="stylesheet" href="/atestat/style/global.css">
     <title>Adauga Joc</title>
 </head>
 
 <body>
     <?php
-    include(__DIR__ . "/../../../../components/navbar/index.php");
+    include(__DIR__ . "/../../../../../components/navbar/index.php");
     ?>
     <section>
         <div class="form-container">
@@ -128,7 +128,7 @@ if (isset($_POST["submit"])) {
                     <textarea name="description" rows="4" cols="50" required>
                         <?= $game["descriere"] ?>
                     </textarea>
-                    <button type="submit" name="submit" value="submit">Postează</button>
+                    <button type="submit" name="submit" value="submit">POSTEAZĂ</button>
                 </div>
             </form>
         </div>

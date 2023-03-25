@@ -1,21 +1,11 @@
 <?php
-include(__DIR__ . "/../../../../utils/database.php");
+include(__DIR__ . "/../../utils/database.php");
 
 if (!isset($_COOKIE["user_id"])) {
     header("Location: /atestat/login.php");
     return;
 }
 $user_id = $_COOKIE["user_id"];
-
-$user_query = $database->prepare("SELECT id, role FROM atestat_user WHERE id = :user_id");
-$user_query->bindValue(":user_id", $user_id);
-$user_query->execute();
-$user = $user_query->fetch();
-
-if (!isset($user["role"]) || $user["role"] != "ADMIN") {
-    header("Location: /atestat/login.php");
-    return;
-}
 
 ?>
 
@@ -40,28 +30,37 @@ if (isset($_POST["submit"])) {
     $prefix = bin2hex(random_bytes(10));
     $filename = "$prefix" . "$extension";
 
-    $upload_folder = __DIR__ . "/../../../../images/";
+    $upload_folder = __DIR__ . "/../../images/";
     $upload_file = $upload_folder . $filename;
 
     if (move_uploaded_file($temporary_file, $upload_file)) {
         echo "File is valid, and was successfully uploaded.\n";
-    } else {
-        echo "Possible file upload attack!\n";
+    } else
         return;
-    }
 
     try {
         $insert_query = $database->prepare("
             INSERT INTO 
-                atestat_joc (imagine, descriere, nume) 
-            VALUES (:filename, :description, :name)
+                atestat_joc_propuneri (
+                    imagine, 
+                    descriere, 
+                    nume,
+                    user_id
+                ) 
+                VALUES (
+                    :filename, 
+                    :description, 
+                    :name,
+                    :user_id
+                )
         ");
 
         $insert_query->bindValue(":filename", $filename);
         $insert_query->bindValue(":description", $game_description);
         $insert_query->bindValue(":name", $game_name);
+        $insert_query->bindValue(":user_id", $user_id);
         $insert_query->execute();
-        header("Location: /atestat/pages/dashboard/index.php?view=admin");
+        header("Location: /atestat/jocuri.php");
 
     } catch (PDOException $error) {
         if ($error->getCode() == 23000) {
@@ -84,18 +83,18 @@ if (isset($_POST["submit"])) {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./add-game.css">
+    <link rel="stylesheet" href="./new-game.css">
     <link rel="stylesheet" href="/atestat/style/global.css">
-    <title>Adauga Joc</title>
+    <title>Propune Joc</title>
 </head>
 
 <body>
     <?php
-    include(__DIR__ . "/../../../../components/navbar/index.php");
+    include(__DIR__ . "/../../components/navbar/index.php");
     ?>
     <section>
         <div class="form-container">
-            <span class="form-title">Adaugă un joc nou: </span>
+            <span class="form-title">Propune un joc nou: </span>
             <form action="" method="post" name="form" enctype="multipart/form-data">
                 <div class="form-2-column-group">
                     <div style="margin-right:1.5rem;">
@@ -111,7 +110,7 @@ if (isset($_POST["submit"])) {
                 <div class="form-1-column-group">
                     <label>Descriere: </label>
                     <textarea name="description" rows="4" cols="50" required></textarea>
-                    <button type="submit" name="submit" value="submit">Postează</button>
+                    <button type="submit" name="submit" value="submit">POSTEAZĂ</button>
                 </div>
             </form>
         </div>

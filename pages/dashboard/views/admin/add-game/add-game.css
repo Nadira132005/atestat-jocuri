@@ -37,22 +37,6 @@ section {
 .form-1-column-group {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-}
-
-.propose-game-redirect {
-  margin-top: 0.5rem;
-  font-size: 1.25rem;
-  padding: 0.5rem 0.75rem;
-  background: rgb(123, 87, 255);
-  color: white;
-}
-.propose-game-redirect:hover {
-  background: rgb(97, 59, 236);
-}
-
-.hint {
-  color: gray;
 }
 
 nav {

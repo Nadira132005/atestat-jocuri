@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . "/../../../../utils/database.php");
+include(__DIR__ . "/../../../../../utils/database.php");
 
 if (!isset($_COOKIE["user_id"])) {
     header("Location: /atestat/login.php");
@@ -40,7 +40,7 @@ if (isset($_POST["submit"])) {
     $prefix = bin2hex(random_bytes(10));
     $filename = "$prefix" . "$extension";
 
-    $upload_folder = __DIR__ . "/../../../../images/";
+    $upload_folder = __DIR__ . "/../../../../../images/";
     $upload_file = $upload_folder . $filename;
 
     if (move_uploaded_file($temporary_file, $upload_file)) {
@@ -91,7 +91,7 @@ if (isset($_POST["submit"])) {
 
 <body>
     <?php
-    include(__DIR__ . "/../../../../components/navbar/index.php");
+    include(__DIR__ . "/../../../../../components/navbar/index.php");
     ?>
     <section>
         <div class="form-container">
@@ -111,7 +111,7 @@ if (isset($_POST["submit"])) {
                 <div class="form-1-column-group">
                     <label>Descriere: </label>
                     <textarea name="description" rows="4" cols="50" required></textarea>
-                    <button type="submit" name="submit" value="submit">Postează</button>
+                    <button type="submit" name="submit" value="submit">POSTEAZĂ</button>
                 </div>
             </form>
         </div>

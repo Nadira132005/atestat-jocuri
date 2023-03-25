@@ -93,7 +93,10 @@ if (isset($_POST["submit"])) {
         <div class="form-1-column-group">
           <label>Adauga un comentariu:</label>
           <textarea name="review" rows="4" cols="50" required></textarea>
-          <button type="submit" name="submit" value="submit">Postează</button>
+          <button type="submit" name="submit" value="submit">POSTEAZĂ</button>
+          <br>
+          <span class="hint">Nu găsești jocul tău preferat?</span>
+          <a class="propose-game-redirect" href="/atestat/pages/new-game/index.php">PROPUNE UN JOC</a>
         </div>
       </form>
     </div>
