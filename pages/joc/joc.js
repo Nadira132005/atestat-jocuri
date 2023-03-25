@@ -1,21 +1,28 @@
 const deleteReviewButton = document.getElementById("delete-review");
 const cancelButton = document.getElementById("cancel");
-const modal = document.getElementsByClassName("modal-delete-reviews")[0];
+const dialogWindow = document.getElementsByClassName(
+  "dialog-delete-reviews"
+)[0];
 
 const openDialogButtons = Array.from(
   document.getElementsByClassName("open-dialog")
 );
 
-if (openDialogButtons.length && deleteReviewButton && cancelButton && modal) {
+if (
+  openDialogButtons.length &&
+  deleteReviewButton &&
+  cancelButton &&
+  dialogWindow
+) {
   openDialogButtons.forEach((button) =>
     button.addEventListener("click", () => {
-      modal.classList.add("open");
+      dialogWindow.classList.add("open");
       deleteReviewButton.value = button.value;
     })
   );
 
   cancelButton.addEventListener("click", () => {
-    modal.classList.remove("open");
+    dialogWindow.classList.remove("open");
   });
 }
 

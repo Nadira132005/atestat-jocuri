@@ -7,7 +7,9 @@ $success = null;
 if (isset($_POST["review-id"])) {
     $review_id = $_POST["review-id"];
     try {
-        $delete_review_query = $database->prepare("DELETE FROM atestat_review WHERE id = :review_id");
+        $delete_review_query = $database->prepare("
+            DELETE FROM atestat_review WHERE id = :review_id
+        ");
         $delete_review_query->bindValue(":review_id", $review_id);
         $delete_review_query->execute();
 
@@ -58,7 +60,7 @@ if (isset($_POST["review-id"])) {
     include(__DIR__ . "/../../components/navbar/index.php");
     ?>
 
-    <div class="modal-delete-reviews">
+    <div class="dialog-delete-reviews">
         <div class="dialog">
             <span class="big-warning">
                 Ești sigur că vrei să ștergi review-ul?
@@ -92,8 +94,9 @@ if (isset($_POST["review-id"])) {
             FROM atestat_joc 
             LEFT JOIN atestat_review
             ON atestat_review.joc_id = atestat_joc.id
-            WHERE atestat_joc.id = $game_id;
+            WHERE atestat_joc.id = $game_id
         ")->fetch();
+
         $game_reviews = $database->query("
             SELECT 
                 atestat_review.id AS review_id,
@@ -106,6 +109,7 @@ if (isset($_POST["review-id"])) {
             LEFT JOIN atestat_user 
             ON atestat_review.user_id = atestat_user.id 
             WHERE atestat_joc.id = $game_id
+            ORDER BY atestat_review.updated_at DESC;
         ")->fetchAll();
 
         ?>
@@ -161,10 +165,26 @@ if (isset($_POST["review-id"])) {
                     </div>
                     <div class="review-actions">
                         <?php
-                        if (isset($_COOKIE["user_id"]) && $_COOKIE["user_id"] == $review["user_id"]) {
+                        $user_id = $_COOKIE["user_id"];
+                        if (!isset($user_id))
+                            echo "";
+
+                        $user = $database->query("
+                            SELECT id, role FROM atestat_user WHERE id = $user_id 
+                        ")->fetch();
+
+
+
+
+                        if ($user["id"] == $review["user_id"] || $user["role"] == "ADMIN") {
+                            $edit_review_URL =
+                                "/atestat/pages/editeaza/index.php" . "?" .
+                                "review-id=" . $review["review_id"];
                             ?>
-                            <a class="edit" href=<?= "/atestat/pages/editeaza/index.php" . "?" . "review-id=" . $review["review_id"] ?>>EDITEAZĂ</a>
-                            <button class="delete open-dialog" value=<?= $review["review_id"] ?>>ȘTERGE</button>
+                            <a class="edit" href=<?= $edit_review_URL ?>>EDITEAZĂ</a>
+                            <button class="delete open-dialog" value=<?= $review["review_id"] ?>>
+                                ȘTERGE
+                            </button>
                         <?php } ?>
                     </div>
                 </div>

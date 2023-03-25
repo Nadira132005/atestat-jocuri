@@ -11,8 +11,15 @@ $review_id = $_GET["review-id"];
 $user_id = $_COOKIE["user_id"];
 
 
-// do not allow a user that is not the owner of the review to edit it 
-$review_query = $database->prepare("SELECT * FROM atestat_review WHERE atestat_review.id = :review_id AND atestat_review.user_id = :user_id");
+// do not allow a user that is not the owner or an admin to edit the review 
+$review_query = $database->prepare("
+    SELECT * FROM atestat_review 
+    LEFT JOIN atestat_user
+    ON atestat_review.user_id = atestat_user.id
+    WHERE 
+        atestat_review.id = :review_id 
+        AND (atestat_review.user_id = :user_id OR role = 'ADMIN')
+    ");
 
 $review_query->bindValue(":review_id", $review_id);
 $review_query->bindValue(":user_id", $user_id);

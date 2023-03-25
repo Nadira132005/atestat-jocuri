@@ -3,7 +3,7 @@ include("./utils/database.php");
 
 if (!isset($_COOKIE["user_id"])) {
   header("Location: login.php");
-  die();
+  return;
 }
 
 if (isset($_POST["submit"])) {
@@ -17,18 +17,30 @@ if (isset($_POST["submit"])) {
   if ($stars < 0)
     $stars = 0;
 
-  $template_query = $database->prepare("
+  $insert_review_query = $database->prepare("
     INSERT INTO 
-      atestat_review (user_id, joc_id, stele, comentariu) 
-      VALUES (:user_id, :game_id, :stars, :review)
+      atestat_review (
+        user_id, 
+        joc_id, 
+        stele, 
+        comentariu
+      ) 
+      VALUES (
+        :user_id, 
+        :game_id, 
+        :stars, 
+        :review
+      )
   ");
-  $template_query->bindValue(":user_id", $user_id);
-  $template_query->bindValue(":game_id", $game_id);
-  $template_query->bindValue(":stars", $stars);
-  $template_query->bindValue(":review", $review);
-  $template_query->execute();
 
-  header("Location: jocuri.php");
+
+  $insert_review_query->bindValue(":user_id", $user_id);
+  $insert_review_query->bindValue(":game_id", $game_id);
+  $insert_review_query->bindValue(":stars", $stars);
+  $insert_review_query->bindValue(":review", $review);
+  $insert_review_query->execute();
+
+  header("Location: pages/joc/index.php?joc-id=" . $game_id);
 }
 
 ?>
@@ -56,7 +68,9 @@ if (isset($_POST["submit"])) {
         <div class="form-2-column-group">
           <div style="margin-right:1.5rem;">
             <?php
-            $games_to_review = $database->query("SELECT id, nume FROM atestat_joc")->fetchAll();
+            $games_to_review = $database->query("
+              SELECT id, nume FROM atestat_joc
+            ")->fetchAll();
             ?>
             <label>Alege jocul: </label>
             <select required name="game_id">
