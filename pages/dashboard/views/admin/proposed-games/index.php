@@ -33,26 +33,18 @@ if (isset($_POST["approve-game"])) {
         $get_game_query->execute();
         $game = $get_game_query->fetch();
 
-        $delete_game_query = $database->prepare("
-            DELETE FROM atestat_joc_propuneri 
-            WHERE id = :game_id
-        ");
-
-        $delete_game_query->bindValue(":game_id", $game_id);
-        $delete_game_query->execute();
-
         $insert_official_game = $database->prepare("
-            INSERT INTO 
-                atestat_joc (
-                    imagine, 
-                    descriere, 
-                    nume
-                ) 
-                VALUES (
-                    :filename, 
-                    :description, 
-                    :name
-                )
+        INSERT INTO 
+            atestat_joc (
+                imagine, 
+                descriere, 
+                nume
+            ) 
+            VALUES (
+                :filename, 
+                :description, 
+                :name
+            )
         ");
         $insert_official_game->bindValue(":filename", $game["imagine"]);
         $insert_official_game->bindValue(":description", $game["descriere"]);
@@ -62,8 +54,24 @@ if (isset($_POST["approve-game"])) {
         $inserted_game = $insert_official_game->rowCount();
         if ($inserted_game == 1)
             $success = "Jocul a fost oficializat cu succes!";
+
     } catch (PDOException $error) {
-        $error = "UPS! Jocul nu a putut fi oficializat!";
+        if ($error->getCode() == 23000)
+            $error = "UPS! Jocul nu a putut fi oficializat! Jocul există deja!";
+        else
+            $error = "UPS! Jocul nu a putut fi oficializat!";
+    }
+
+    try {
+        $delete_proposed_game = $database->prepare("
+            DELETE FROM atestat_joc_propuneri 
+            WHERE id = :game_id
+        ");
+
+        $delete_proposed_game->bindValue(":game_id", $game_id);
+        $delete_proposed_game->execute();
+    } catch (PDOException $error) {
+        $error = "Jocul a fost oficializat, dar nu a putut fi șters!";
     }
 }
 
