@@ -1,7 +1,6 @@
 <?php
 include(__DIR__ . "/../../utils/database.php");
 
-
 // do not allow unauthenticated users to edit reviews
 if (!isset($_COOKIE["user_id"])) {
     header("Location: login.php");
@@ -13,7 +12,7 @@ $user_id = $_COOKIE["user_id"];
 
 // do not allow a user that is not the owner or an admin to edit the review 
 $review_query = $database->prepare("
-    SELECT * FROM atestat_review 
+    SELECT atestat_review.* FROM atestat_review 
     LEFT JOIN atestat_user
     ON atestat_review.user_id = atestat_user.id
     WHERE 
