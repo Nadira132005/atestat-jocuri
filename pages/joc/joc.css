@@ -106,11 +106,11 @@ section {
   cursor: pointer;
 }
 
-.modal-delete-reviews {
+.dialog-delete-reviews {
   display: none;
 }
 
-.modal-delete-reviews.open {
+.dialog-delete-reviews.open {
   display: block;
   position: fixed;
   z-index: 10;
