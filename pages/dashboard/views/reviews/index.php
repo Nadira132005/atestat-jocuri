@@ -84,7 +84,7 @@ if (isset($success))
 
     <?php
     // only display the list of reviews if it's not empty 
-    if (isset($reviews[0]["id"])) {
+    if (isset($reviews[0]["review_id"])) {
         ?>
         <?php
         foreach ($reviews as $review) {

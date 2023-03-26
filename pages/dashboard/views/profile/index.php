@@ -88,7 +88,8 @@ if (!$is_edit_mode) {
                 <?= substr($user["nume"], 0, 1) . substr($user["prenume"], 0, 1) ?>
             </div>
             <div class="user-info">
-                <span class="info-tag">Nume:
+                <span class="info-tag">
+                    <b>Nume:</b>
                     <?= $user["nume"] ?>
                 </span>
                 <a href="?action=edit" class="edit-user-field fa fa-edit"></a>
@@ -115,14 +116,16 @@ if (!$is_edit_mode) {
             </div>
 
             <div class="user-info">
-                <span class="info-tag">Parola:
+                <span class="info-tag">
+                    <b>Parola:</b>
                     <?= $user["password"] ?>
                 </span>
                 <a href="?action=edit" class="edit-user-field fa fa-edit"></a>
             </div>
 
             <div class="user-info">
-                <span class="info-tag">Username:
+                <span class="info-tag">
+                    <b>Username:</b>
                     <?= $user["username"] ?>
                 </span>
                 <a href="?action=edit" class="edit-user-field fa fa-edit"></a>

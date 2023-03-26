@@ -95,7 +95,9 @@ if (isset($_POST["submit"])) {
           <textarea name="review" rows="4" cols="50" required></textarea>
           <button type="submit" name="submit" value="submit">POSTEAZĂ</button>
           <br>
-          <span class="hint">Nu găsești jocul tău preferat?</span>
+          <span class="hint">
+            <i>Nu găsești jocul tău preferat?</i>
+          </span>
           <a class="propose-game-redirect" href="/atestat/pages/new-game/index.php">PROPUNE UN JOC</a>
         </div>
       </form>
