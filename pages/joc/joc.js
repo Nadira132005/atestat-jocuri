@@ -29,7 +29,8 @@ if (
 const closeMessageButton = document.getElementById("close-message");
 if (closeMessageButton) {
   closeMessageButton.addEventListener("click", () => {
-    console.log("CLICK!");
-    closeMessageButton.parentElement.style.display = "none";
+    const message = closeMessageButton.parentElement;
+    // To close the message we delete it
+    message.remove();
   });
 }

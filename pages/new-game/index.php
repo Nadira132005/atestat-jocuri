@@ -15,8 +15,8 @@ if (isset($_POST["submit"])) {
     $game_description = $_POST["description"];
     $game_name = $_POST["name"];
     $temporary_file = $_FILES['game-thumbnail']['tmp_name'];
-    $mime_type = $_FILES["game-thumbnail"]["type"];
 
+    $mime_type = $_FILES["game-thumbnail"]["type"];
     $extension = ".jpg";
     if ($mime_type == "image/jpeg")
         $extension = ".jpeg";
@@ -28,13 +28,14 @@ if (isset($_POST["submit"])) {
         $extension = ".gif";
 
     $prefix = bin2hex(random_bytes(10));
+
     $filename = "$prefix" . "$extension";
+    $upload_to = "/../../images/" . $filename;
 
-    $upload_folder = __DIR__ . "/../../images/";
-    $upload_file = $upload_folder . $filename;
+    $was_successful_upload = move_uploaded_file($temporary_file, $upload_to);
 
-    if (move_uploaded_file($temporary_file, $upload_file)) {
-        echo "File is valid, and was successfully uploaded.\n";
+    if ($was_successful_upload) {
+        echo "Fișierul a fost încărcat cu succes!";
     } else
         return;
 
@@ -95,7 +96,7 @@ if (isset($_POST["submit"])) {
     <section>
         <div class="form-container">
             <span class="form-title">Propune un joc nou: </span>
-            <form action="" method="post" name="form" enctype="multipart/form-data">
+            <form enctype="multipart/form-data" action="" method="post" name="form">
                 <div class="form-2-column-group">
                     <div style="margin-right:1.5rem;">
                         <label for="">Numele jocului: </label>
