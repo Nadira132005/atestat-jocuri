@@ -165,27 +165,30 @@ if (isset($_POST["review-id"])) {
                     </div>
                     <div class="review-actions">
                         <?php
-                        $user_id = $_COOKIE["user_id"];
-                        if (!isset($user_id))
+                        if (!isset($_COOKIE["user_id"])) {
+                            // this means the user is unauthenticated
+                            // we do not allow any actions
                             echo "";
+                        } else {
+                            $user_id = $_COOKIE["user_id"];
 
-                        $user = $database->query("
+                            // get the user with the id retrieved from cookies
+                            $user = $database->query("
                             SELECT id, role FROM atestat_user WHERE id = $user_id 
-                        ")->fetch();
+                            ")->fetch();
 
-
-
-
-                        if ($user["id"] == $review["user_id"] || $user["role"] == "ADMIN") {
-                            $edit_review_URL =
-                                "/atestat/pages/editeaza/index.php" . "?" .
-                                "review-id=" . $review["review_id"];
-                            ?>
-                            <a class="edit" href=<?= $edit_review_URL ?>>EDITEAZĂ</a>
-                            <button class="delete open-dialog" value=<?= $review["review_id"] ?>>
-                                ȘTERGE
-                            </button>
-                        <?php } ?>
+                            // verify if the user owns the review or is admin
+                            if ($user["id"] == $review["user_id"] || $user["role"] == "ADMIN") {
+                                $edit_review_URL =
+                                    "/atestat/pages/editeaza/index.php" . "?" .
+                                    "review-id=" . $review["review_id"];
+                                ?>
+                                <a class="edit" href=<?= $edit_review_URL ?>>EDITEAZĂ</a>
+                                <button class="delete open-dialog" value=<?= $review["review_id"] ?>>
+                                    ȘTERGE
+                                </button>
+                            <?php }
+                        } ?>
                     </div>
                 </div>
             <?php } ?>
