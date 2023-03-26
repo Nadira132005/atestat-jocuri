@@ -24,15 +24,20 @@
       $username = $_POST["username"];
       $password = $_POST["password"];
 
-      $template_query = $database->prepare("SELECT id FROM atestat_user WHERE username = :username AND password = :password");
-      $template_query->bindValue(":username", $username);
-      $template_query->bindValue(":password", $password);
-      $template_query->execute();
-      $result = $template_query->fetch();
+      $get_user_query = $database->prepare("
+        SELECT id FROM atestat_user 
+        WHERE username = :username 
+        AND password = :password
+      ");
 
-      if (isset($result["id"])) {
-        $id = $result["id"];
-        store_user_in_cookie($id);
+      $get_user_query->bindValue(":username", $username);
+      $get_user_query->bindValue(":password", $password);
+      $get_user_query->execute();
+      $user = $get_user_query->fetch();
+
+      if (isset($user["id"])) {
+        $user_id = $user["id"];
+        store_user_in_cookie($user_id);
 
         // redirect to home page
         header("Location: index.php");
@@ -48,8 +53,8 @@
           <label for="username">Username</label>
           <input type="text" placeholder="Introduceti numele" name="username" required>
           <label for="password">Parola</label>
-          <input placeholder="Introduceti parola" name="password" required>
-          <button type="submit" value="submit" name="submit">Submit</button>
+          <input placeholder="Introduceti parola" name="password" required type="password">
+          <button type="submit" value="submit" name="submit">POSTEAZĂ</button>
         </div>
       </form>
 

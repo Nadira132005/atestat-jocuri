@@ -70,7 +70,7 @@
         </div>
         <div class="form-1-column-group">
           <label>Email:</label>
-          <input required name="email">
+          <input required name="email" type="email">
           <div class="form-2-column-group">
             <div>
               <label>Username:</label>
@@ -78,10 +78,10 @@
             </div>
             <div>
               <label>Parola:</label>
-              <input required name="password">
+              <input required name="password" type="password">
             </div>
           </div>
-          <button type="submit" value="submit" name="submit">Creeaza cont</button>
+          <button type="submit" value="submit" name="submit">CREEAZĂ CONT</button>
         </div>
       </form>
     </div>
