@@ -9,23 +9,27 @@ if (!isset($_COOKIE["user_id"])) {
 $review_id = $_GET["review-id"];
 $user_id = $_COOKIE["user_id"];
 
+$user_query = $database->prepare("
+    SELECT * FROM atestat_user WHERE id = :user_id
+");
+$user_query->bindValue(":user_id", $user_id);
+$user_query->execute();
+$user = $user_query->fetch();
 
-// do not allow a user that is not the owner or an admin to edit the review 
+// only allow an admin or the owner to edit the review 
 $review_query = $database->prepare("
-    SELECT atestat_review.* FROM atestat_review 
+    SELECT atestat_review.*, atestat_user.id AS user_id FROM atestat_review 
     LEFT JOIN atestat_user
     ON atestat_review.user_id = atestat_user.id
     WHERE 
         atestat_review.id = :review_id 
-        AND (atestat_review.user_id = :user_id OR role = 'ADMIN')
     ");
 
 $review_query->bindValue(":review_id", $review_id);
-$review_query->bindValue(":user_id", $user_id);
 $review_query->execute();
 $review = $review_query->fetch();
 
-if (!isset($review["id"])) {
+if ($review["user_id"] != $user["id"] && $user["role"] != "ADMIN") {
     header("Location: /atestat/index.php");
 }
 
