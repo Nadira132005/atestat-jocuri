@@ -30,7 +30,7 @@ if (isset($_POST["submit"])) {
     $prefix = bin2hex(random_bytes(10));
 
     $filename = "$prefix" . "$extension";
-    $upload_to = "/../../images/" . $filename;
+    $upload_to = __DIR__ . "/../../images/" . $filename;
 
     $was_successful_upload = move_uploaded_file($temporary_file, $upload_to);
 
